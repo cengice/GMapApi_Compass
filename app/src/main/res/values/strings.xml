@@ -1,0 +1,12 @@
+<resources>
+ <!--   <string name="google_maps_API_key">AIzaSyA3pflqVlY4aBEYrKbV_eO8ASCs4kmMLY4</string>-->
+    <string name="app_name">Kible</string>
+    <string name="btn_map">Map</string>
+   <string name="btn_compass">Compass</string>
+   <string name="btn_home">Home</string>
+    <string name="txt_azimuth">0         0</string>
+    <string name="txt_bearing">0    degrees East of North</string>
+
+
+
+</resources>
