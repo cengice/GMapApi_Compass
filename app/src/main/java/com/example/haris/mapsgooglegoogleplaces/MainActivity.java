@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView txt_serviceok;
+    TextView txt_servicenotok;
 
     private static final String TAG ="MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -19,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        txt_serviceok = (TextView) findViewById(R.id.txt_serviceok);
+        txt_servicenotok = (TextView) findViewById(R.id.txt_servicenotok);
 
         if(isServicesOK()){
             init();
@@ -26,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init(){
+        txt_serviceok.setVisibility(View.VISIBLE);
+        txt_servicenotok.setVisibility(View.INVISIBLE);
+
         Button btnMap = (Button) findViewById(R.id.btnMap);
         btnMap.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -44,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         if(available == ConnectionResult.SUCCESS) {
             //everything is fine and user can make the map requests
             Log.d(TAG, "isServicesOK: Google Play Services is working");
+
             return true;
         }
         else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)) {
@@ -54,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "You can't make requests", Toast.LENGTH_SHORT).show();
         }
+        txt_serviceok.setVisibility(View.INVISIBLE);
+        txt_servicenotok.setVisibility(View.VISIBLE);
         return false;
 
     }
