@@ -65,7 +65,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_compass);
         Log.d(TAG, "moveCamera: lane 69 onCreate started");
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
