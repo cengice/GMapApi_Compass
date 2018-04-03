@@ -45,15 +45,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnCompass"
-        android:text="@string/btn_map"
-        android:id="@+id/btnMap"/>
+        android:text="@string/btn_home"
+        android:id="@+id/btnhome"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnMap"
-        android:text="@string/btn_home"
-        android:id="@+id/btnHome"/>
+        android:text="@string/btn_save"
+        android:id="@+id/btnSave"/>
 
 
     <ImageView
@@ -61,6 +61,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:visibility="gone"
         android:src= "@drawable/compass1"
         android:id="@+id/img_north"/>
 

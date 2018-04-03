@@ -38,9 +38,11 @@ import com.google.android.gms.tasks.Task;
 
 public class MapActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+/*
     ImageView img_north;
     ImageView img_mec;
     ImageView img_compass;
+*/
 
     TextView txt_azimuth;
     TextView txt_bearing;
@@ -65,7 +67,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             //mMap.setMapStyle(GoogleMap.MAP_TYPE_HYBRID);
             //mMap.setMapStyle(MapStyleOptions )
             mMap.setMyLocationEnabled(true);
-            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+//            mMap.getUiSettings().setMyLocationButtonEnabled(false);
+            mMap.getUiSettings().setMyLocationButtonEnabled(true);
+            mMap.getUiSettings().setZoomControlsEnabled(true);
+
+
         }
 
     }
@@ -92,7 +98,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         setContentView(R.layout.activity_map);
+
 
         getLocationPermission();
     }
@@ -132,13 +142,15 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void CalculateBearing (LatLng latLng) {
         Log.d(TAG, "PrepareCompass:moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
 
+/*
         img_north = (ImageView) findViewById(R.id.img_north);
         img_mec = (ImageView) findViewById(R.id.img_mec);
         img_compass = (ImageView) findViewById(R.id.img_compass);
 
-        img_north.setVisibility(View.INVISIBLE);
-        img_mec.setVisibility(View.VISIBLE);
-        img_compass.setVisibility(View.VISIBLE);
+        img_north.setVisibility(View.GONE);
+        img_mec.setVisibility(View.GONE);//img_mec.setVisibility(View.VISIBLE);
+        img_compass.setVisibility(View.GONE);//img_compass.setVisibility(View.VISIBLE);
+*/
 
         txt_azimuth = (TextView) findViewById(R.id.txt_azimuth);
         txt_bearing = (TextView) findViewById(R.id.txt_bearing);
@@ -169,6 +181,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
         double qiblad = 180.0/PI*Math.atan2(Math.sin(longk-lambda),
                 Math.cos(phi)*Math.tan(latk)-Math.sin(phi)*Math.cos(longk-lambda));
+
         bearing = Math.round(qiblad);
         final String s_bearing = Float.toString(bearing);
         //s_bearing = Float.toString(bearing);
@@ -180,16 +193,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         }
 
-        img_north.setRotation( 0);
-        img_north.setVisibility(View.VISIBLE);
+//        img_north.setRotation( 0);
+//        img_north.setVisibility(View.VISIBLE);
 
-        img_compass.setRotation( 0);
-        img_compass.setVisibility(View.INVISIBLE);
+//        img_compass.setRotation( 0);
+//        img_compass.setVisibility(View.INVISIBLE);
 
-        img_mec.setRotation( bearing);
-        img_mec.setVisibility(View.VISIBLE);
+//        img_mec.setRotation( bearing);
+//        img_mec.setVisibility(View.VISIBLE);
 
-        Button btnHome = (Button) findViewById(R.id.btnHome);
+        Button btnHome = (Button) findViewById(R.id.btnhome);
         btnHome.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){

@@ -1,8 +1,10 @@
 package com.example.haris.mapsgooglegoogleplaces;
 import android.app.Dialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView txt_serviceok;
     TextView txt_servicenotok;
+    MediaPlayer mp;
 
     private static final String TAG ="MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -22,9 +25,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
+/*
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+*/
         txt_serviceok = (TextView) findViewById(R.id.txt_serviceok);
         txt_servicenotok = (TextView) findViewById(R.id.txt_servicenotok);
+        mp = MediaPlayer.create(this, R.raw.abc);
 
         if(isServicesOK()){
             init();
@@ -45,6 +55,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    //boolean playSong=true;
+
+    public void playAudio(View v){
+        mp.start();
+    }
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 
