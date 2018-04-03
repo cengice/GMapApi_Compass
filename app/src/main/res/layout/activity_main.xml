@@ -11,5 +11,6 @@
         android:layout_height="wrap_content"
         android:text="@string/btn_map"
         android:id="@+id/btnMap"/>
-    
+
 </android.support.constraint.ConstraintLayout>
+
