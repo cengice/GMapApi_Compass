@@ -39,7 +39,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     double lat = 0.0;
     double lon = 0.0;
     private static final float DEFAULT_ZOOM = 16f;
-    ImageView img_north;
+//    ImageView img_north;
     ImageView img_compass;
     ImageView img_mec;
 
@@ -69,11 +69,11 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         Log.d(TAG, "moveCamera: lane 69 onCreate started");
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        img_north = (ImageView) findViewById(R.id.img_north);
+//        img_north = (ImageView) findViewById(R.id.img_north);
         img_compass = (ImageView) findViewById(R.id.img_compass);
         img_mec = (ImageView) findViewById(R.id.img_mec);
 
-        img_north.setVisibility(View.INVISIBLE);
+//        img_north.setVisibility(View.INVISIBLE);
         img_compass.setVisibility(View.VISIBLE);
         img_mec.setVisibility(View.VISIBLE);
 
@@ -108,6 +108,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
 
 
+/*
         Button btnHome = (Button) findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -117,8 +118,10 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
                 startActivity(intent);
             }
         });
+*/
 
 
+/*
         Button btnHMap = (Button) findViewById(R.id.btnMap);
         btnHMap.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -128,6 +131,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
                 startActivity(intent);
             }
         });
+*/
 
         String s_lat = Double.toString(lat);
         String s_lon = Double.toString(lon);
@@ -176,8 +180,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         int my_mecc = My_Bearing_int - mAzimuth;
 
 
-        img_north.setRotation(0);
-        img_north.setVisibility(View.INVISIBLE);
+//        img_north.setRotation(0);
+//        img_north.setVisibility(View.INVISIBLE);
 
         img_compass.setRotation( -mAzimuth);
         img_compass.setVisibility(View.VISIBLE);
