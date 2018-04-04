@@ -11,7 +11,7 @@
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:id = "@+id/ic_magnify"
+            android:id = "@+id/ic_gps"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginTop="8dp"
-        android:layout_toRightOf="@+id/ic_magnify"
+        android:layout_toRightOf="@+id/ic_gps"
         android:background="@null"
         android:hint="Enter address, City or Zip Code"
         android:textColor="#000"

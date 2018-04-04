@@ -83,6 +83,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //            mMap.getUiSettings().setMyLocationButtonEnabled(false);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);
             mMap.getUiSettings().setZoomControlsEnabled(true);
+
             init();
 
 
@@ -103,6 +104,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
     //widgeta
     private EditText mSearchText;
+    private ImageView mGps;
 
     //vars
     private Boolean mLocationPermissionGranted = false;
@@ -119,47 +121,70 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_map);
         mSearchText= (EditText) findViewById(R.id.input_search);
+        mGps= (ImageView) findViewById(R.id.ic_gps);
 
         getLocationPermission();
 
     }
+
     private void init(){
-        Log.d(TAG, "init:initializing");
-        mSearchText.setOnEditorActionListener(new OnEditorActionListener(){
+        Log.d(TAG, "init: initializing");
+
+        mSearchText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public boolean onEditorAction(TextView textview, int actionId, KeyEvent keyevent){
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if(actionId == EditorInfo.IME_ACTION_SEARCH
-                        || actionId== EditorInfo.IME_ACTION_DONE
-                        || keyevent.getAction() == KeyEvent.ACTION_DOWN
-                        || keyevent.getAction() == KeyEvent.KEYCODE_ENTER){
+                        || actionId == EditorInfo.IME_ACTION_DONE
+                        || keyEvent.getAction() == KeyEvent.ACTION_DOWN
+                        || keyEvent.getAction() == KeyEvent.KEYCODE_ENTER){
+
                     //execute our method for searching
                     geoLocate();
                 }
+
                 return false;
             }
+        });
 
-        } );
-        HideSoftKeyboard();
+        mGps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: clicked gps icon");
+                getDeviceLocation();
+
+            }
+
+        });
+        //hideSoftKeyboard();
+        //bug to close focus
+       // mSearchText.setInputType(0);
+
 
     }
 
     private void geoLocate(){
-        Log.d(TAG, "goelocate:geolocating");
+        Log.d(TAG, "geoLocate: geolocating");
+
         String searchString = mSearchText.getText().toString();
+
         Geocoder geocoder = new Geocoder(MapActivity.this);
-        List<Address> list  = new ArrayList<>();
+        List<Address> list = new ArrayList<>();
         try{
-        list = geocoder.getFromLocationName(searchString, 1);
+            list = geocoder.getFromLocationName(searchString, 1);
         }catch (IOException e){
-            Log.e(TAG, "geolocate: IOEception:"  + e.getMessage());
-
-        }
-        if(list.size() >0){
-          Address address = list.get(0);
-          Log.d(TAG, "geoLocateL found a location: " + address.toString());
-          moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM, address.getAddressLine(0));
+            Log.e(TAG, "geoLocate: IOException: " + e.getMessage() );
         }
 
+        if(list.size() > 0){
+            Address address = list.get(0);
+
+            Log.d(TAG, "geoLocate: found a location: " + address.toString());
+            //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+            //hideSoftKeyboard();
+
+            moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
+                    address.getAddressLine(0));
+        }
     }
 
     private void getDeviceLocation(){
@@ -257,17 +282,17 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //        img_mec.setRotation( bearing);
 //        img_mec.setVisibility(View.VISIBLE);
 
-/*
-        Button btnHome = (Button) findViewById(R.id.btnhome);
-        btnHome.setOnClickListener(new View.OnClickListener(){
+
+        Button btnSave = (Button) findViewById(R.id.btnSave);
+        btnSave.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent (MapActivity.this , MainActivity.class);
+                //Intent intent = new Intent (MapActivity.this , MainActivity.class);
 
-                startActivity(intent);
+                //startActivity(intent);
             }
         });
-*/
+
 
 
         Button btnCompass = (Button) findViewById(R.id.btnCompass);
@@ -297,8 +322,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.addMarker(options);
 
         }
-        HideSoftKeyboard();
-
+        //hideSoftKeyboard();
+        //mSearchText.setInputType(0);
     }
 
 
@@ -350,7 +375,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    private void HideSoftKeyboard(){
+    private void hideSoftKeyboard(){
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
