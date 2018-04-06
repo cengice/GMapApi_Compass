@@ -6,27 +6,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--android:background="#a40404"-->
+    <!--android:background="#028900"-->
     <View
+        android:id="@+id/view_position"
         android:layout_width="7dp"
         android:layout_height="60dp"
         android:layout_above="@+id/img_compass"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
-
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:background="#a40404"
+
+
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-
     <TextView
         android:id="@+id/txt_azimuth"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
@@ -35,16 +38,16 @@
         android:text="@string/txt_azimuth"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_phone"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
         android:id="@+id/txt_bearing"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
@@ -53,10 +56,10 @@
         android:text="@string/txt_azimuth"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="20sp"
+        android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txt_qible"
         app:layout_constraintTop_toBottomOf="@+id/txt_azimuth" />
 
     <!--
@@ -84,14 +87,12 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
 
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:src="@drawable/compasspple"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_bearing" />
@@ -112,21 +113,83 @@ android:layout_marginTop="8dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginBottom="8dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:src="@drawable/compass23d"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_bearing" />
 
 
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="39dp"-->
+    <TextView
+        android:id="@+id/txt_align"
 
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:singleLine="false"
+        android:text="@string/txt_explain"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_mec" />
+
+    <TextView
+        android:id="@+id/txt_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textStyle="bold"
+
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_phone"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_azimuth"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_qible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:textStyle="bold"
+
+        android:text="@string/txt_qible"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_bearing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_phone" />
+
+    <!--
+        <EditText
+            android:id="@+id/txt_align"
+            android:layout_centerHorizontal="true"
+            android:inputType="textPersonName"
+            android:text="@string/txt_explain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_compass" />
+    -->
 
 
 </android.support.constraint.ConstraintLayout>
 
+    <!--android:ems="30"-->

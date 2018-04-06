@@ -40,10 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
+        //added toolbar
 /*
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 */
+
         txt_serviceok = (TextView) findViewById(R.id.txt_serviceok);
         txt_servicenotok = (TextView) findViewById(R.id.txt_servicenotok);
 
@@ -77,10 +79,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //boolean playSong=true;
-
     public void playAudio(View v){
         mp.start();
     }
+
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");
 

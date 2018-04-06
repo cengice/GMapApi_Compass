@@ -14,6 +14,9 @@
     <string name="txt_savedtextlat">000.0000</string>
     <string name="txt_savedtextlon">000.0000</string>
     <string name="txt_savedtextbear">000.0000 NE</string>
+    <string name="txt_explain">Keep the phone away from electonic / magnetic sources. Rotate phone to align lines for Qibla and for phone Line will turn green</string>
+    <string name="txt_phone">PHONE</string>
+    <string name="txt_qible">QIBLE</string>
 
 
 

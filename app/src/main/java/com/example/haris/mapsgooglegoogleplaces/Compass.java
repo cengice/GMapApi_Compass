@@ -7,11 +7,13 @@ package com.example.haris.mapsgooglegoogleplaces;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.location.Location;
+import android.media.MediaPlayer;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,6 +55,13 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
     TextView txt_azimuth;
     TextView txt_bearing;
+    TextView txt_align;
+
+    View view_position;
+
+//    MediaPlayer mp;
+
+
     //    SupportMapFragment mapFragment;
     private Location currentLocation;
     private GoogleMap mMap;
@@ -74,6 +83,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compass);
+//        mp = MediaPlayer.create(this, R.raw.abc);
 
         Log.d(TAG, "moveCamera: lane 69 onCreate started");
 
@@ -88,6 +98,10 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
         txt_azimuth = (TextView) findViewById(R.id.txt_azimuth);
         txt_bearing = (TextView) findViewById(R.id.txt_bearing);
+        txt_align = (TextView) findViewById(R.id.txt_align);
+        view_position = (View) findViewById(R.id.view_position);
+
+
 
         Log.d(TAG, "moveCamera: lane 82 unbundle started");
 
@@ -118,30 +132,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
 
 
-/*
-        Button btnHome = (Button) findViewById(R.id.btnHome);
-        btnHome.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent (Compass.this , MainActivity.class);
-
-                startActivity(intent);
-            }
-        });
-*/
-
-
-/*
-        Button btnHMap = (Button) findViewById(R.id.btnMap);
-        btnHMap.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Intent intent = new Intent (Compass.this , MapActivity.class);
-
-                startActivity(intent);
-            }
-        });
-*/
 
         String s_lat = Double.toString(lat);
         String s_lon = Double.toString(lon);
@@ -150,7 +140,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         //latLng.setLongitude(lon);
 
         txt_azimuth.setText(s_lat + "   "+s_lon);
-        txt_bearing.setText(My_Bearing_int +"° "+" NE" );
+        txt_bearing.setText( My_Bearing_int +"° "+" NE" );
+
 
         start();
     }
@@ -220,8 +211,21 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         if (mAzimuth <= 80 && mAzimuth > 10)
             where = "NE";
 
-
         txt_azimuth.setText(mAzimuth + "° " + where);
+
+//        Log.d(TAG, "view_position:mAzimuth: mAzimuth: " + mAzimuth + " My_Bearing_int: " + My_Bearing_int );
+
+        //add green marker when qible found
+        int abserr = Math.abs(mAzimuth-My_Bearing_int);
+
+        if (abserr<2 ){
+            view_position.setBackgroundColor(Color.GREEN);
+
+        }else{
+            view_position.setBackgroundColor(Color.RED);
+
+        }
+
     }
 
     @Override
@@ -230,6 +234,12 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     }
 
 
+    //boolean playSong=true;
+/*
+    public void playAudioCompass(View v){
+        mp.start();
+    }
+*/
 
     public void start() {
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {
