@@ -91,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
         if(available == ConnectionResult.SUCCESS) {
             //everything is fine and user can make the map requests
             Log.d(TAG, "isServicesOK: Google Play Services is working");
+            txt_serviceok.setVisibility(View.VISIBLE);
+            txt_servicenotok.setVisibility(View.INVISIBLE);
 
             return true;
         }
@@ -99,12 +101,15 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "isServicesOK: an error occured but we can fix it");
             Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
+            txt_serviceok.setVisibility(View.INVISIBLE);
+            txt_servicenotok.setVisibility(View.VISIBLE);
+            return false;
         }else{
             Toast.makeText(this, "You can't make requests", Toast.LENGTH_SHORT).show();
+            txt_serviceok.setVisibility(View.INVISIBLE);
+            txt_servicenotok.setVisibility(View.VISIBLE);
+            return false;
         }
-        txt_serviceok.setVisibility(View.INVISIBLE);
-        txt_servicenotok.setVisibility(View.VISIBLE);
-        return false;
 
     }
 }

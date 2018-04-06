@@ -211,6 +211,28 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
                                     DEFAULT_ZOOM, "My Location");
+
+/*
+                            String searchString ="My location";
+                            Geocoder geocoder = new Geocoder(MapActivity.this);
+                            List<Address> list = new ArrayList<>();
+                            try{
+                                list = geocoder.getFromLocationName(searchString, 1);
+                            }catch (IOException e){
+                                Log.e(TAG, "geoLocate: IOException: " + e.getMessage() );
+                            }
+
+                            if(list.size() > 0) {
+                                Address address = list.get(0);
+
+                                Log.d(TAG, "geoLocate: found a location: " + address.toString());
+                                //Toast.makeText(this, address.toString(), Toast.LENGTH_SHORT).show();
+                                //hideSoftKeyboard();
+                            }
+*/
+
+                            //geoLocate();
+
                         }else{
                             Log.d(TAG, "oncomplete: current location is null");
                             Toast.makeText(MapActivity.this, "unable to get current location ", Toast.LENGTH_SHORT).show();
@@ -228,15 +250,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void CalculateBearing (LatLng latLng) {
         Log.d(TAG, "PrepareCompass:moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
 
-/*
-        img_north = (ImageView) findViewById(R.id.img_north);
-        img_mec = (ImageView) findViewById(R.id.img_mec);
-        img_compass = (ImageView) findViewById(R.id.img_compass);
-
-        img_north.setVisibility(View.GONE);
-        img_mec.setVisibility(View.GONE);//img_mec.setVisibility(View.VISIBLE);
-        img_compass.setVisibility(View.GONE);//img_compass.setVisibility(View.VISIBLE);
-*/
 
         txt_azimuth = (TextView) findViewById(R.id.txt_azimuth);
         txt_azimuthlon = (TextView) findViewById(R.id.txt_azimuthlon);
