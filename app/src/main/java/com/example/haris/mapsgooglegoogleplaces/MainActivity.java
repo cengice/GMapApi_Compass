@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -17,6 +18,17 @@ public class MainActivity extends AppCompatActivity {
 
     TextView txt_serviceok;
     TextView txt_servicenotok;
+
+    TextView textlat;
+    TextView textlon;
+    TextView textbear;
+
+    TextView txt_savedtextlat;
+    TextView txt_savedtextlon;
+    TextView txt_savedtextbear;
+
+    private EditText mSearchText;
+
     MediaPlayer mp;
 
     private static final String TAG ="MainActivity";
@@ -34,6 +46,15 @@ public class MainActivity extends AppCompatActivity {
 */
         txt_serviceok = (TextView) findViewById(R.id.txt_serviceok);
         txt_servicenotok = (TextView) findViewById(R.id.txt_servicenotok);
+
+        textlat = (TextView) findViewById(R.id.textlat);
+        textlon = (TextView) findViewById(R.id.textlon);
+        textbear = (TextView) findViewById(R.id.textbear);
+
+        txt_savedtextlat = (TextView) findViewById(R.id.txt_savedtextlat);
+        txt_savedtextlon = (TextView) findViewById(R.id.txt_savedtextlon);
+        txt_savedtextbear = (TextView) findViewById(R.id.txt_savedtextbear);
+
         mp = MediaPlayer.create(this, R.raw.abc);
 
         if(isServicesOK()){

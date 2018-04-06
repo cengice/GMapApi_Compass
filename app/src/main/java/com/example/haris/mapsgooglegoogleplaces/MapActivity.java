@@ -58,6 +58,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 */
 
     TextView txt_azimuth;
+    TextView txt_azimuthlon;
     TextView txt_bearing;
 
     @Override
@@ -123,6 +124,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mSearchText= (EditText) findViewById(R.id.input_search);
         mGps= (ImageView) findViewById(R.id.ic_gps);
 
+        hideSoftKeyboard();
+        //bug to close focus
+        // mSearchText.setInputType(0);
+
         getLocationPermission();
 
     }
@@ -155,15 +160,14 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             }
 
         });
-        //hideSoftKeyboard();
-        //bug to close focus
-       // mSearchText.setInputType(0);
 
 
     }
 
     private void geoLocate(){
         Log.d(TAG, "geoLocate: geolocating");
+
+        //hideSoftKeyboard();
 
         String searchString = mSearchText.getText().toString();
 
@@ -184,6 +188,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             moveCamera(new LatLng(address.getLatitude(), address.getLongitude()), DEFAULT_ZOOM,
                     address.getAddressLine(0));
+            CalculateBearing(new LatLng(address.getLatitude(), address.getLongitude()));
+
         }
     }
 
@@ -233,6 +239,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 */
 
         txt_azimuth = (TextView) findViewById(R.id.txt_azimuth);
+        txt_azimuthlon = (TextView) findViewById(R.id.txt_azimuthlon);
+
         txt_bearing = (TextView) findViewById(R.id.txt_bearing);
         //mRotation ( latLng.latitude, latLng.longitude, float bearing);
         double PI = Math.PI;
@@ -259,19 +267,27 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (lat==21.4 && lon==39.8){
             Log.d(TAG, "current_locatino: Any Direction");
         }
-        double qiblad = 180.0/PI*Math.atan2(Math.sin(longk-lambda),
+        final double qiblad = 180.0/PI*Math.atan2(Math.sin(longk-lambda),
                 Math.cos(phi)*Math.tan(latk)-Math.sin(phi)*Math.cos(longk-lambda));
 
         bearing = Math.round(qiblad);
         final String s_bearing = Float.toString(bearing);
-        //s_bearing = Float.toString(bearing);
+        int int_bearing = Math.round((bearing));
 
-        txt_azimuth.setText("lat: " +latLng.latitude + "   lng: " + latLng.longitude );
-        txt_bearing.setText(s_bearing +" degrees East of North" );
+        txt_azimuth.setText(String.format("lat: %.4f", latLng.latitude));
+        txt_azimuthlon.setText(String.format("lon: %.4f", latLng.longitude));
+
+        txt_bearing.setText(int_bearing +" °  NE" );
         if (bearing<0.0){
-            txt_bearing.setText(s_bearing +" degrees West of North" );
-
+            txt_bearing.setText(int_bearing +" °  NW" );
         }
+
+        /*
+        txt_bearing.setText(s_bearing +" °  NE" );
+        if (bearing<0.0){
+            txt_bearing.setText(s_bearing +" °  NW" );
+        }
+*/
 
 //        img_north.setRotation( 0);
 //        img_north.setVisibility(View.VISIBLE);
@@ -288,8 +304,21 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onClick(View view){
                 //Intent intent = new Intent (MapActivity.this , MainActivity.class);
+                //List<Saved> list = new ArrayList<>();
+                //use an array of Objects:
+                //final double lat = latLng.latitude;
+                //final double lon = latLng.longitude;
+                //double qiblad
+                //string location
 
-                //startActivity(intent);
+                Object[][] x = new Object[4][10];
+                x[0][0] = lat;
+                x[0][1] = lon;
+                x[0][2] = qiblad;
+                x[0][3] = "Louisville, Kentucky";
+                Log.d(TAG, "calulateBearing: lat: " + x[0][0] + "lon: " + x[0][1]+ "qiblad: " + x[0][2] + "location: "+ x[0][3]);
+
+
             }
         });
 
@@ -315,6 +344,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         Log.d(TAG, "moveCamera:moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude + "title  " +title );
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 
+        //hideSoftKeyboard();
+
         if(!title.equals("My Location")){
         MarkerOptions options = new MarkerOptions()
          .position(latLng)
@@ -322,7 +353,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         mMap.addMarker(options);
 
         }
-        //hideSoftKeyboard();
+        hideSoftKeyboard();
         //mSearchText.setInputType(0);
     }
 
@@ -375,8 +406,12 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
-    private void hideSoftKeyboard(){
-        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    public void hideSoftKeyboard(){
+//       this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+        Log.d(TAG, "hideSoftKeyboard: called ");
+
     }
+
 
 }

@@ -6,6 +6,7 @@ package com.example.haris.mapsgooglegoogleplaces;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,6 +18,7 @@ import android.os.Bundle;
 import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,6 +33,12 @@ import com.google.android.gms.tasks.Task;
 
 public class Compass extends AppCompatActivity implements SensorEventListener {
 
+//    void setRequestedOrientation (int requestedOrientation);
+
+    @Override
+    public void setRequestedOrientation(int requestedOrientation) {
+        super.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+    }
 
     String My_Bearing = null;
     int My_Bearing_int = 0;
@@ -43,7 +51,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     ImageView img_compass;
     ImageView img_mec;
 
-    TextView txt_compass;
+    TextView txt_azimuth;
     TextView txt_bearing;
     //    SupportMapFragment mapFragment;
     private Location currentLocation;
@@ -66,6 +74,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compass);
+
         Log.d(TAG, "moveCamera: lane 69 onCreate started");
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -77,7 +86,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         img_compass.setVisibility(View.VISIBLE);
         img_mec.setVisibility(View.VISIBLE);
 
-        txt_compass = (TextView) findViewById(R.id.txt_azimuth);
+        txt_azimuth = (TextView) findViewById(R.id.txt_azimuth);
         txt_bearing = (TextView) findViewById(R.id.txt_bearing);
 
         Log.d(TAG, "moveCamera: lane 82 unbundle started");
@@ -86,6 +95,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         if (extras != null) {
             My_Bearing = extras.getString("My_Bearing");
             My_Bearing_int =  Math.round(Float.parseFloat(My_Bearing));
+
             lat = getIntent().getDoubleExtra("My_lat", 0.0);
             lon = getIntent().getDoubleExtra("My_lon", 0.0);
             Log.d(TAG, "moveCamera: lane 91 moving the camera to: lat: " + lat + ", lng: " + lon);
@@ -97,12 +107,12 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
             //currentLocation.setLatitude(lat);
             //currentLocation.setLongitude(lon);
 
-            moveCamera(new LatLng(lat, lon),   DEFAULT_ZOOM);
+//            moveCamera(new LatLng(lat, lon),   DEFAULT_ZOOM);
 
 
             //SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
 
-            moveCamera(new LatLng(lat,lon), DEFAULT_ZOOM);
+//            moveCamera(new LatLng(lat,lon), DEFAULT_ZOOM);
 
         }
 
@@ -139,13 +149,14 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         //latLng.longitude = lon;
         //latLng.setLongitude(lon);
 
-        txt_compass.setText(s_lat + "   "+s_lon);
-        txt_bearing.setText(My_Bearing +" degrees East of North" );
+        txt_azimuth.setText(s_lat + "   "+s_lon);
+        txt_bearing.setText(My_Bearing_int +"° "+" NE" );
 
         start();
     }
 
 
+/*
     private void moveCamera (LatLng latLng, float zoom){
         Log.d(TAG, "moveCamera:lane 137 moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude+ " , zoom" +zoom);
         //if (mMap!= null) {
@@ -153,6 +164,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         //}
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
     }
+*/
 
     //private static final String TAG = "Compass";
 
@@ -209,7 +221,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
             where = "NE";
 
 
-        txt_compass.setText(mAzimuth + "° " + where);
+        txt_azimuth.setText(mAzimuth + "° " + where);
     }
 
     @Override

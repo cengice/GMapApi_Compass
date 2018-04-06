@@ -17,6 +17,10 @@
 -->
         <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>-->
 
+    <!--android:layout_gravity="center"-->
+
+
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,6 +57,71 @@
         android:onClick="playAudio"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="66dp" />
+
+    <TextView
+        android:id="@+id/textlat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/playAudio"
+        android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
+        android:layout_marginTop="15dp"
+        android:text="Saved Latitude" />
+
+    <TextView
+        android:id="@+id/textlon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textlat"
+        android:layout_alignStart="@+id/textlat"
+        android:layout_below="@+id/textlat"
+        android:layout_marginTop="16dp"
+        android:text="Saved Longitude" />
+
+    <TextView
+        android:id="@+id/txt_savedtextlat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignEnd="@+id/btnMap"
+        android:layout_alignRight="@+id/btnMap"
+        android:layout_alignTop="@+id/textlat"
+        android:text="@string/txt_savedtextlat" />
+
+    <TextView
+        android:id="@+id/txt_savedtextlon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignBottom="@+id/textlon"
+        android:layout_alignLeft="@+id/txt_savedtextlat"
+        android:layout_alignStart="@+id/txt_savedtextlat"
+        android:text="@string/txt_savedtextlon" />
+
+    <TextView
+        android:id="@+id/txt_savedtextbear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/textlon"
+        android:layout_alignStart="@+id/textlon"
+        android:layout_below="@+id/textlon"
+        android:layout_marginTop="12dp"
+        android:text="Saved Kible direction" />
+
+    <TextView
+        android:id="@+id/textbear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_alignLeft="@+id/txt_savedtextlon"
+        android:layout_alignStart="@+id/txt_savedtextlon"
+        android:layout_alignTop="@+id/txt_savedtextbear"
+        android:text="@string/txt_savedtextbear" />
 
 
 </RelativeLayout>

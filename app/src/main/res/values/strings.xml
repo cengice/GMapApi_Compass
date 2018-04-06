@@ -5,10 +5,15 @@
    <string name="btn_compass">Compass</string>
     <string name="btn_home">Home</string>
     <string name="btn_save">Save</string>
-    <string name="txt_azimuth">lat:  00.0000  lon:  00.0000</string>
+    <string name="txt_azimuth">lat:  00.0000 </string>
+    <string name="txt_azimuthlon">lon:  00.0000</string>
+
     <string name="txt_serviceok">Service is OK</string>
     <string name="txt_servicenotok">Service is not OK</string>
-    <string name="txt_bearing">0    degrees East of North</string>
+    <string name="txt_bearing">0    degrees NE</string>
+    <string name="txt_savedtextlat">000.0000</string>
+    <string name="txt_savedtextlon">000.0000</string>
+    <string name="txt_savedtextbear">000.0000 NE</string>
 
 
 

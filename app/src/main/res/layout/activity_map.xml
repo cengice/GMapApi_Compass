@@ -8,50 +8,74 @@
     android:layout_height="match_parent">
 
 
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="15dp"
-            android:id = "@+id/ic_gps"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:contentDescription="search image"
-            android:src="@drawable/ic_magnify"
-            />
+    <ImageView
+        android:id="@+id/ic_gps"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="search image"
+        android:src="@drawable/ic_magnify"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/input_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:layout_toRightOf="@+id/ic_gps"
         android:background="@null"
         android:hint="Enter address, City or Zip Code"
-        android:textColor="#000"
-        android:textSize="15dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:imeOptions="actionSearch"
-        />
+        android:inputType="text"
+        android:textColor="#000"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+<!--
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.51"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/txt_azimuth"
+-->
+
+<!--
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+-->
 
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
+
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="501dp"
-        android:layout_below="@+id/btnSave"
-        android:layout_marginRight="8dp"
+        android:layout_height="467dp"
 
+        android:layout_below="@+id/input_search"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/txt_azimuth"
+        app:layout_constraintTop_toTopOf="@+id/btnCompass"
         tools:context=".MapsActivity" />
-
-
-
-
 
     <Button
         android:id="@+id/btnCompass"
@@ -84,15 +108,36 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/input_search"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_azimuth"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCompass"
         app:layout_constraintTop_toBottomOf="@+id/input_search" />
+
+    <!--android:layout_marginStart="8dp"-->
+
+    <TextView
+        android:id="@+id/txt_azimuthlon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_azimuthlon"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCompass"
+        app:layout_constraintTop_toBottomOf="@+id/txt_azimuth" />
+
+    <!--android:layout_marginStart="8dp"-->
 
     <TextView
         android:id="@+id/txt_bearing"
@@ -100,51 +145,50 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/txt_azimuth"
         android:layout_centerHorizontal="true"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="12dp"
         android:text="@string/txt_bearing"
         android:textAlignment="center"
         android:textColor="#000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/btnCompass"
-        app:layout_constraintTop_toBottomOf="@+id/txt_azimuth" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSave"
+        app:layout_constraintTop_toBottomOf="@+id/txt_azimuthlon" />
 
 
+    <!--
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:src= "@drawable/compass1"
+            android:id="@+id/img_north"/>
 
 
-<!--
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src= "@drawable/compasspple"
+            android:visibility="gone"
+            android:id="@+id/img_compass"/>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:visibility="gone"
-        android:src= "@drawable/compass1"
-        android:id="@+id/img_north"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:src= "@drawable/compass23a"
+            android:visibility="gone"
+            android:id="@+id/img_mec"/>
 
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src= "@drawable/compasspple"
-        android:visibility="gone"
-        android:id="@+id/img_compass"/>
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:src= "@drawable/compass23a"
-        android:visibility="gone"
-        android:id="@+id/img_mec"/>
-
--->
+    -->
 
 
 
