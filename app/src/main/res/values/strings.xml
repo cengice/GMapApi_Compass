@@ -8,15 +8,22 @@
     <string name="txt_azimuth">lat:  00.0000 </string>
     <string name="txt_azimuthlon">lon:  00.0000</string>
 
-    <string name="txt_serviceok">Service is OK</string>
-    <string name="txt_servicenotok">Service is not OK</string>
+    <string name="txt_serviceok">Google Service is OK</string>
+    <string name="txt_servicenotok">Google Service is not OK</string>
     <string name="txt_bearing">0    degrees NE</string>
     <string name="txt_savedtextlat">000.0000</string>
     <string name="txt_savedtextlon">000.0000</string>
-    <string name="txt_savedtextbear">000.0000 NE</string>
-    <string name="txt_explain">Keep the phone away from electonic / magnetic sources. Rotate phone to align lines for Qibla and for phone Line will turn green</string>
+ <string name="txt_savedtextbear">000.0000 </string>
+ <string name="txt_savedtextNE">NE </string>
+
+    <string name="txt_explain">Rotate the phone to Qibla direction. Stop rotating when screen turns green. Keep the phone away from electonic and magnetic sources.</string>
     <string name="txt_phone">PHONE</string>
     <string name="txt_qible">QIBLE</string>
+    <string name="txtlat">"Saved Latitude"</string>
+   <string name="textlon">"Saved Longiitude"</string>
+ <string name="textbear">"Saved Kible direction"</string>
+ <string name="textNE">"Saved Kible side"</string>
+
 
 
 

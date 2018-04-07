@@ -49,9 +49,10 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     double lat = 0.0;
     double lon = 0.0;
     private static final float DEFAULT_ZOOM = 16f;
-//    ImageView img_north;
-    ImageView img_compass;
+
+//    ImageView img_compass;
     ImageView img_mec;
+    ImageView img_mec_green;
 
     TextView txt_azimuth;
     TextView txt_bearing;
@@ -88,13 +89,12 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         Log.d(TAG, "moveCamera: lane 69 onCreate started");
 
         mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-//        img_north = (ImageView) findViewById(R.id.img_north);
-        img_compass = (ImageView) findViewById(R.id.img_compass);
+//        img_compass = (ImageView) findViewById(R.id.img_compass);
+//        img_compass.setVisibility(View.VISIBLE);
         img_mec = (ImageView) findViewById(R.id.img_mec);
-
-//        img_north.setVisibility(View.INVISIBLE);
-        img_compass.setVisibility(View.VISIBLE);
         img_mec.setVisibility(View.VISIBLE);
+        img_mec_green = (ImageView) findViewById(R.id.img_mec_green);
+        img_mec_green.setVisibility(View.INVISIBLE);
 
         txt_azimuth = (TextView) findViewById(R.id.txt_azimuth);
         txt_bearing = (TextView) findViewById(R.id.txt_bearing);
@@ -138,8 +138,8 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
         //latLng.longitude = lon;
         //latLng.setLongitude(lon);
-
-        txt_azimuth.setText(s_lat + "   "+s_lon);
+//last xxxx1
+//        txt_azimuth.setText(s_lat + "   "+s_lon);
         txt_bearing.setText( My_Bearing_int +"° "+" NE" );
 
 
@@ -183,14 +183,15 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         int my_mecc = My_Bearing_int - mAzimuth;
 
 
-//        img_north.setRotation(0);
-//        img_north.setVisibility(View.INVISIBLE);
 
-        img_compass.setRotation( -mAzimuth);
-        img_compass.setVisibility(View.VISIBLE);
+//        img_compass.setRotation( -mAzimuth);
+//        img_compass.setVisibility(View.VISIBLE);
 
         img_mec.setRotation(my_mecc);
         img_mec.setVisibility(View.VISIBLE);
+
+        img_mec_green.setRotation(my_mecc);
+        img_mec_green.setVisibility(View.INVISIBLE);
 
         String where = "NW";
 
@@ -220,9 +221,15 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
         if (abserr<2 ){
             view_position.setBackgroundColor(Color.GREEN);
+//            img_mec_green.setRotation(my_mecc);
+            img_mec_green.setVisibility(View.VISIBLE);
+            img_mec.setVisibility(View.INVISIBLE);
+//            img_compass.setVisibility(View.INVISIBLE);
 
         }else{
             view_position.setBackgroundColor(Color.RED);
+//            img_mec_green.setVisibility(View.INVISIBLE);
+            img_mec.setVisibility(View.VISIBLE);
 
         }
 

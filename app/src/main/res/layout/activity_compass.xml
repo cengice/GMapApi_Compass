@@ -17,7 +17,7 @@
         android:layout_gravity="center"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:background="#a40404"
 
 
@@ -32,15 +32,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_azimuth"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/txt_phone"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,16 +50,15 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/txt_azimuth"
         android:textAlignment="center"
         android:textColor="#000"
-        android:textSize="15sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/txt_qible"
-        app:layout_constraintTop_toBottomOf="@+id/txt_azimuth" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <!--
         <Button
@@ -80,7 +78,24 @@
             android:text="@string/btn_home" />
     -->
 
+    <ImageView
+        android:id="@+id/img_mec_green"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
 
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/compass23f"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_bearing" />
+
+
+<!--
     <ImageView
         android:id="@+id/img_compass"
         android:layout_width="fill_parent"
@@ -90,12 +105,13 @@
         android:layout_marginEnd="8dp"
 
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
-        android:src="@drawable/compasspple"
+        android:src="@drawable/compasspplesmall"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_bearing" />
+-->
 
     <!--
 android:scaleType="centerInside"
@@ -116,12 +132,13 @@ android:layout_marginTop="8dp"
 
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:adjustViewBounds="true"
         android:src="@drawable/compass23d"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_bearing" />
+
 
 
     <!--android:layout_width="wrap_content"-->
@@ -141,7 +158,7 @@ android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
         android:singleLine="false"
         android:text="@string/txt_explain"
-        android:textSize="10sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -151,14 +168,12 @@ android:layout_marginTop="8dp"
         android:id="@+id/txt_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:textStyle="bold"
-
         android:layout_marginTop="8dp"
+
         android:text="@string/txt_phone"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toStartOf="@+id/txt_azimuth"
+        android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,27 +182,15 @@ android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginRight="8dp"
+
         android:layout_marginTop="8dp"
-        android:textStyle="bold"
-
         android:text="@string/txt_qible"
-        android:textSize="15sp"
+        android:textSize="12sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/txt_bearing"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_phone" />
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!--
-        <EditText
-            android:id="@+id/txt_align"
-            android:layout_centerHorizontal="true"
-            android:inputType="textPersonName"
-            android:text="@string/txt_explain"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_compass" />
-    -->
 
 
 </android.support.constraint.ConstraintLayout>

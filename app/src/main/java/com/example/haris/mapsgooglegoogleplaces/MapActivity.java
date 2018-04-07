@@ -286,14 +286,25 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         bearing = Math.round(qiblad);
         final String s_bearing = Float.toString(bearing);
         int int_bearing = Math.round((bearing));
+        String s_lat = Double.toString(latLng.latitude);
+        String s_lon = Double.toString(latLng.longitude);
 
         txt_azimuth.setText(String.format("lat: %.4f", latLng.latitude));
         txt_azimuthlon.setText(String.format("lon: %.4f", latLng.longitude));
 
         txt_bearing.setText(int_bearing +" °  NE" );
+        ((MyApplication) this.getApplication()).setsavedNEVariable("NE");
+
         if (bearing<0.0){
             txt_bearing.setText(int_bearing +" °  NW" );
+            ((MyApplication) this.getApplication()).setsavedNEVariable("NW");
         }
+
+        // set
+        ((MyApplication) this.getApplication()).setsavedlatVariable(String.format(s_lat));
+        ((MyApplication) this.getApplication()).setsavedlonVariable(String.format(s_lon));
+        ((MyApplication) this.getApplication()).setsavedbearVariable(String.format(s_bearing));
+
 
         /*
         txt_bearing.setText(s_bearing +" °  NE" );

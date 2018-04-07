@@ -1,133 +1,226 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.example.haris.mapsgooglegoogleplaces.MainActivity">
+    android:layout_height="match_parent">
 
-    <!--android:layout_height="?attr/actionBarSize"-->
-<!--
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
--->
 
     <Button
+        android:id="@+id/btnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:text="@string/btn_map"
-        android:id="@+id/btnMap"/>
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txt_serviceok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/txt_servicenotok"
-        android:layout_alignBottom="@+id/txt_servicenotok"
-        android:layout_alignEnd="@+id/txt_servicenotok"
-        android:layout_alignLeft="@+id/txt_servicenotok"
-        android:layout_alignRight="@+id/txt_servicenotok"
-        android:layout_alignStart="@+id/txt_servicenotok"
-        android:text="@string/txt_serviceok"
-        android:textAlignment="center"
-        android:textColor="#028900"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/txt_servicenotok"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/btnMap"
         android:layout_alignBottom="@+id/btnMap"
+        android:layout_alignEnd="@+id/txt_savedtextbear"
+        android:layout_alignRight="@+id/txt_savedtextbear"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_toEndOf="@+id/textbear"
+        android:layout_toRightOf="@+id/textbear"
+        android:text="@string/txt_serviceok"
+        android:textAlignment="center"
+        android:textColor="#67ac15"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_servicenotok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnMap"
+        android:layout_alignBottom="@+id/btnMap"
+        android:layout_alignEnd="@+id/txt_savedtextbear"
+        android:layout_alignRight="@+id/txt_savedtextbear"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/textbear"
         android:layout_toRightOf="@+id/textbear"
         android:text="@string/txt_servicenotok"
         android:textAlignment="center"
         android:textColor="#ff0000"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <CheckBox
         android:id="@+id/playAudio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnMap"
-        android:text="Play Ezzan"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="playAudio"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="66dp" />
+        android:text="Play Ezzan"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
 
     <TextView
         android:id="@+id/textlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/playAudio"
-        android:layout_marginEnd="48dp"
-        android:layout_marginRight="48dp"
-        android:layout_marginTop="15dp"
-        android:text="Saved Latitude" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/textlon"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txt_savedtextlat"
+        app:layout_constraintTop_toBottomOf="@+id/txt_servicenotok" />
 
     <TextView
         android:id="@+id/textlon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_alignLeft="@+id/textlat"
         android:layout_alignStart="@+id/textlat"
         android:layout_below="@+id/textlat"
-        android:layout_marginTop="16dp"
-        android:text="Saved Longitude" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/textlon"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txt_savedtextlon"
+        app:layout_constraintTop_toBottomOf="@+id/textlat" />
+
 
     <TextView
         android:id="@+id/txt_savedtextlat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_alignEnd="@+id/btnMap"
         android:layout_alignRight="@+id/btnMap"
         android:layout_alignTop="@+id/textlat"
-        android:text="@string/txt_savedtextlat" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_savedtextlat"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toBottomOf="@+id/txt_serviceok" />
+
 
     <TextView
         android:id="@+id/txt_savedtextlon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_alignBottom="@+id/textlon"
         android:layout_alignLeft="@+id/txt_savedtextlat"
         android:layout_alignStart="@+id/txt_savedtextlat"
-        android:text="@string/txt_savedtextlon" />
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="@string/txt_savedtextlon"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toBottomOf="@+id/txt_savedtextlat" />
 
     <TextView
         android:id="@+id/txt_savedtextbear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_alignLeft="@+id/textlon"
         android:layout_alignStart="@+id/textlon"
         android:layout_below="@+id/textlon"
-        android:layout_marginTop="12dp"
-        android:text="Saved Kible direction" />
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_savedtextbear"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toBottomOf="@+id/txt_savedtextlon" />
 
     <TextView
         android:id="@+id/textbear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:layout_alignLeft="@+id/txt_savedtextlon"
         android:layout_alignStart="@+id/txt_savedtextlon"
         android:layout_alignTop="@+id/txt_savedtextbear"
-        android:text="@string/txt_savedtextbear" />
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/textbear"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/txt_savedtextbear"
+        app:layout_constraintTop_toBottomOf="@+id/textlon" />
+
+    <TextView
+        android:id="@+id/txt_savedtextNE"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/txt_savedtextNE"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toBottomOf="@+id/txt_savedtextbear" />
+
+    <TextView
+        android:id="@+id/textNE"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/textNE"
+        app:layout_constraintStart_toEndOf="@+id/txt_savedtextbear"
+        app:layout_constraintTop_toBottomOf="@+id/textbear" />
+
+    <Button
+        android:id="@+id/btnCompass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/btn_compass"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_savedtextNE" />
+
+    <!--
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="368dp"
+            android:background="@color/colorAccent"
+            android:textColor="#ffffff"
+
+            android:layout_height="228dp"
+            android:layout_marginBottom="275dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Please install / update Google Play Services"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    -->
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
 
