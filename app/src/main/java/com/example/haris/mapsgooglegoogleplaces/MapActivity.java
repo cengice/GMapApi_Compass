@@ -87,7 +87,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             init();
 
-
         }
 
     }
@@ -323,6 +322,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 //        img_mec.setVisibility(View.VISIBLE);
 
 
+/*
         Button btnSave = (Button) findViewById(R.id.btnSave);
         btnSave.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -345,6 +345,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
             }
         });
+*/
 
 
 
@@ -357,6 +358,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 intent.putExtra("My_Bearing", s_bearing);
                 intent.putExtra("My_lat", lat);
                 intent.putExtra("My_lon", lon);
+                Log.d(TAG, "compas intent transfer: lat: " + lat + ", lng: " + lon + "s_bearing  " +s_bearing );
 
 
                 startActivity(intent);

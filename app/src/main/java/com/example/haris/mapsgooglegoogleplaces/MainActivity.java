@@ -30,12 +30,8 @@ public class MainActivity extends AppCompatActivity {
     TextView txt_savedtextbear;
     TextView txt_savedtextNE;
 
-    Button btnMap;
 
-
-    private EditText mSearchText;
-
-    MediaPlayer mp;
+    // Ver 1.0.1  MediaPlayer mp;
 
     private static final String TAG ="MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
@@ -110,13 +106,16 @@ public class MainActivity extends AppCompatActivity {
         txt_savedtextbear.setText(savedtextbear);
         txt_savedtextNE.setText(savedtextNE);
 
-        mp = MediaPlayer.create(this, R.raw.abc);
+        // Ver 1.0.1   mp = MediaPlayer.create(this, R.raw.abc);
 
         Button btnCompass = (Button) findViewById(R.id.btnCompass);
 
         if(!testsaveddate){
                 btnCompass.setVisibility(View.INVISIBLE);
         }
+        final String s_savedtextbear =savedtextbear;
+        final String d_lat =savedtextlat;
+        final String d_lon =savedtextlon;
 
        if(testsaveddate) {
            btnCompass.setVisibility(View.VISIBLE);
@@ -124,18 +123,15 @@ public class MainActivity extends AppCompatActivity {
                @Override
                public void onClick(View view){
                    Intent intent = new Intent (MainActivity.this, Compass.class);
-//                   intent.putExtra("My_Bearing", s_savedtextbear);
- /*                  intent.putExtra("My_lat", d_lat);
+                   intent.putExtra("My_Bearing", s_savedtextbear);
+                  intent.putExtra("My_lat", d_lat);
                    intent.putExtra("My_lon", d_lon);
-*/
+
 
                    startActivity(intent);
                }
            });
-       }
-
-
-
+      }
 
 
         if(isServicesOK()){
@@ -162,10 +158,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //boolean playSong=true;
+    // Ver 1.0.1boolean playSong=true;
+/*
     public void playAudio(View v){
         mp.start();
     }
+*/
 
     public boolean isServicesOK(){
         Log.d(TAG, "isServicesOK: checking google services version");

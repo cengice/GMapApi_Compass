@@ -1,10 +1,18 @@
 <resources>
  <!--   <string name="google_maps_API_key">AIzaSyA3pflqVlY4aBEYrKbV_eO8ASCs4kmMLY4</string>-->
     <string name="app_name">Kible</string>
-    <string name="btn_map">Map</string>
-   <string name="btn_compass">Compass</string>
+    <string name="map_name">Google Map</string>
+    <string name="compass_name">Qibla Locator</string>
+
+    <string name="btn_map">My Location</string>
+   <string name="btn_compass">Qibla Locator</string>
     <string name="btn_home">Home</string>
     <string name="btn_save">Save</string>
+
+    <string name="search_image">Search Image</string>
+    <string name="search_hint">Enter address, City or Zip Code</string>
+
+
     <string name="txt_azimuth">lat:  00.0000 </string>
     <string name="txt_azimuthlon">lon:  00.0000</string>
 
@@ -18,7 +26,7 @@
 
     <string name="txt_explain">Rotate the phone to Qibla direction. Stop rotating when screen turns green. Keep the phone away from electonic and magnetic sources.</string>
     <string name="txt_phone">PHONE</string>
-    <string name="txt_qible">QIBLE</string>
+    <string name="txt_qible">QIBLA</string>
     <string name="txtlat">"Saved Latitude"</string>
    <string name="textlon">"Saved Longiitude"</string>
  <string name="textbear">"Saved Kible direction"</string>
