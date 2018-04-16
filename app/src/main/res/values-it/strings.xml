@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Die Qibla</string>
-    <string name="map_name">Google Karte</string>
+    <string name="app_name">Qibla</string>
+    <string name="map_name">Google Map</string>
     <string name="compass_name">Qibla Locator</string>
-    <string name="btn_map">My Mein Standort</string>
+    <string name="btn_map">La mia posizione</string>
     <string name="btn_compass">Qibla Locator</string>
-    <string name="btn_home">Hauptseite</string>
+    <string name="btn_home">Casa</string>
     <string name="btn_save">Save</string>
-    <string name="search_image">Search Image</string>
-    <string name="search_hint">Geben Sie Adresse, Stadt oder Postleitzahl ein</string>
-    <string name="green_image">Ausgerichtetes Qibla-Bild</string>
+    <string name="search_image">Cerca l\'immagine</string>
+    <string name="search_hint">Inserisci l\'indirizzo, la città o il codice postale</string>
+    <string name="green_image">Immagine Qibla allineata</string>
     <string name="rotating_image">Rotating image</string>
-    <string name="txt_azimuth">"Breite:  00.0000 "</string>
-    <string name="txt_azimuthlon">Längengrad:  00.0000</string>
+    <string name="txt_azimuth">"latitudine:  00.0000 "</string>
+    <string name="txt_azimuthlon">longitudine:  00.0000</string>
 
-    <string name="txt_serviceok">Der Google-Dienst ist in Ordnung</string>
-    <string name="txt_servicenotok">Der Google-Dienst ist nicht in Ordnung</string>
+    <string name="txt_serviceok">Il servizio Google è OK</string>
+    <string name="txt_servicenotok">Il servizio Google non è OK</string>
     <string name="txt_bearing">0    °  NE</string>
     <string name="txt_savedtextlat">000.0000</string>
     <string name="txt_savedtextlon">000.0000</string>
@@ -23,8 +23,8 @@
     <string name="txt_savedtextNE">NE </string>
 
     <string name="txt_explain">Rotate the phone to Qibla direction. Stop rotating when screen turns green. Keep the phone away from electonic and magnetic sources.</string>
-    <string name="txt_phone">Mobilgerät</string>
-    <string name="txt_qibla">QIBLA</string>
+    <string name="txt_phone">Dispositivo mobile</string>
+    <string name="txt_qibla">Qibla</string>
     <string name="txtlat">"Saved Latitude"</string>
     <string name="textlon">"Saved Longiitude"</string>
     <string name="textbear">"Saved Qibla direction"</string>

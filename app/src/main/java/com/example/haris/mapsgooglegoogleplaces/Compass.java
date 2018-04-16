@@ -33,6 +33,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.Task;
 
+import java.util.Locale;
+
 public class Compass extends AppCompatActivity implements SensorEventListener {
 
 //    void setRequestedOrientation (int requestedOrientation);
@@ -103,7 +105,7 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
 
 
-        Log.d(TAG, "moveCamera: lane 82 unbundle started");
+//        Log.d(TAG, "moveCamera: lane 82 unbundle started");
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -114,24 +116,10 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
             lon = getIntent().getDoubleExtra("My_lon", 0.0);
             Log.d(TAG, "moveCamera: lane 91 moving the camera to: lat: " + lat + ", lng: " + lon);
             latLng = new LatLng(lat, lon);
-            Log.d(TAG, "moveCamera: lane 92 moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
+//            Log.d(TAG, "moveCamera: lane 92 moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude);
 
-            ////Task location = mFusedLocationProviderClient.setLastLocation();
-
-            //currentLocation.setLatitude(lat);
-            //currentLocation.setLongitude(lon);
-
-//            moveCamera(new LatLng(lat, lon),   DEFAULT_ZOOM);
-
-
-            //SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
-
-//            moveCamera(new LatLng(lat,lon), DEFAULT_ZOOM);
 
         }
-
-
-
 
         String s_lat = Double.toString(lat);
         String s_lon = Double.toString(lon);
@@ -139,25 +127,16 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         //latLng.longitude = lon;
         //latLng.setLongitude(lon);
 //last xxxx1
-//        txt_azimuth.setText(s_lat + "   "+s_lon);
-        txt_bearing.setText( My_Bearing_int +"° "+" NE" );
+
+        //txt_bearing.setText( My_Bearing_int +"° "+" NE" );
+        //Rev 1.0.0
+        String myIntAsStrinMy_Bearing_int = String.format("%d", My_Bearing_int);
+        txt_bearing.setText( myIntAsStrinMy_Bearing_int );
 
 
         start();
     }
 
-
-/*
-    private void moveCamera (LatLng latLng, float zoom){
-        Log.d(TAG, "moveCamera:lane 137 moving the camera to: lat: " + latLng.latitude + ", lng: " + latLng.longitude+ " , zoom" +zoom);
-        //if (mMap!= null) {
-        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
-        //}
-        //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
-    }
-*/
-
-    //private static final String TAG = "Compass";
 
     @Override
     public void onSensorChanged(SensorEvent event) {
@@ -181,7 +160,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
 
         mAzimuth = Math.round(mAzimuth);
         int my_mecc = My_Bearing_int - mAzimuth;
-
 
 
 //        img_compass.setRotation( -mAzimuth);
@@ -212,7 +190,11 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
         if (mAzimuth <= 80 && mAzimuth > 10)
             where = "NE";
 
-        txt_azimuth.setText(mAzimuth + "° " + where);
+//        txt_azimuth.setText(mAzimuth + "° " + where);
+        //Rev 1.0.0
+        String myIntAsStringmAzimuth = String.format("%d", mAzimuth);
+//        txt_azimuth.setText(mAzimuth );
+        txt_azimuth.setText(myIntAsStringmAzimuth );
 
 //        Log.d(TAG, "view_position:mAzimuth: mAzimuth: " + mAzimuth + " My_Bearing_int: " + My_Bearing_int );
 
@@ -239,14 +221,6 @@ public class Compass extends AppCompatActivity implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int i) {
 
     }
-
-
-    //boolean playSong=true;
-/*
-    public void playAudioCompass(View v){
-        mp.start();
-    }
-*/
 
     public void start() {
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR) == null) {

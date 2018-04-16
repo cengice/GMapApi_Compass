@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textlat;
     TextView textlon;
     TextView textbear;
+    TextView textNE;
 
     TextView txt_savedtextlat;
     TextView txt_savedtextlon;
@@ -47,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 */
-
         txt_serviceok = (TextView) findViewById(R.id.txt_serviceok);
         txt_servicenotok = (TextView) findViewById(R.id.txt_servicenotok);
 
         textlat = (TextView) findViewById(R.id.textlat);
         textlon = (TextView) findViewById(R.id.textlon);
         textbear = (TextView) findViewById(R.id.textbear);
+        textNE = (TextView) findViewById(R.id.textNE);
 
         txt_savedtextlat = (TextView) findViewById(R.id.txt_savedtextlat);
         txt_savedtextlon = (TextView) findViewById(R.id.txt_savedtextlon);
@@ -139,6 +140,34 @@ public class MainActivity extends AppCompatActivity {
         } else{
 
         }
+        Boolean diagnostic_mode = false;
+//        Boolean diagnostic_mode = true;
+
+        if(diagnostic_mode) {
+            txt_serviceok.setVisibility(View.VISIBLE);
+            txt_servicenotok.setVisibility(View.VISIBLE);
+            textlat.setVisibility(View.VISIBLE);
+            textlon.setVisibility(View.VISIBLE);
+            textbear.setVisibility(View.VISIBLE);
+
+            txt_savedtextlat.setVisibility(View.VISIBLE);
+            txt_savedtextlon.setVisibility(View.VISIBLE);
+            txt_savedtextbear.setVisibility(View.VISIBLE);
+            txt_savedtextNE.setVisibility(View.VISIBLE);
+        }else{
+            txt_serviceok.setVisibility(View.INVISIBLE  );
+            txt_servicenotok.setVisibility(View.INVISIBLE);
+            textlat.setVisibility(View.INVISIBLE);
+            textlon.setVisibility(View.INVISIBLE);
+            textbear.setVisibility(View.INVISIBLE);
+            textNE.setVisibility(View.INVISIBLE);
+
+            txt_savedtextlat.setVisibility(View.INVISIBLE);
+            txt_savedtextlon.setVisibility(View.INVISIBLE);
+            txt_savedtextbear.setVisibility(View.INVISIBLE);
+            txt_savedtextNE.setVisibility(View.INVISIBLE);
+
+            }
 
     }
 

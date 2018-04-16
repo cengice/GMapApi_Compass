@@ -98,8 +98,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private static final String COURSE_LOCATION = Manifest.permission.ACCESS_COARSE_LOCATION;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 16f;
-    private static final double DEFAULT_LAT = 38.2864; //38.328732;
-    private static final double DEFAULT_LON = -85.5062;//-85.764771;
     private float currentDegree = 0f;
 
     //widgeta
@@ -122,6 +120,18 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_map);
         mSearchText= (EditText) findViewById(R.id.input_search);
         mGps= (ImageView) findViewById(R.id.ic_gps);
+
+//        Boolean diagnostic_mode = false;
+        Boolean diagnostic_mode = true;
+        if(diagnostic_mode) {
+            mSearchText.setVisibility(EditText.VISIBLE);
+            mGps.setVisibility(ImageView.VISIBLE);
+        }else{
+            mSearchText.setVisibility(EditText.INVISIBLE);
+            mGps.setVisibility(ImageView.INVISIBLE);
+        }
+
+
 
         hideSoftKeyboard();
         //bug to close focus
@@ -204,8 +214,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         if(task.isSuccessful()){
                             Log.d(TAG, "oncomplete: found location");
                             Location currentLocation = (Location) task.getResult();
-                            //currentLocation.setLatitude(DEFAULT_LAT);
-                            //currentLocation.setLongitude(DEFAULT_LON);
                             CalculateBearing(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()));
 
                             moveCamera(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude()),
@@ -283,27 +291,44 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 Math.cos(phi)*Math.tan(latk)-Math.sin(phi)*Math.cos(longk-lambda));
 
         bearing = Math.round(qiblad);
-        final String s_bearing = Float.toString(bearing);
         int int_bearing = Math.round((bearing));
+
+        if (bearing<0.0) {
+            int_bearing = 360 + int_bearing;
+            bearing = 360 + bearing;
+        }
+
+        final String s_bearing = Float.toString(bearing);
+
         String s_lat = Double.toString(latLng.latitude);
         String s_lon = Double.toString(latLng.longitude);
+
+        // Get a string resource from your app's Resources
+        String mystringNE = getResources().getString(R.string.stringNE);
+        String mystringNW = getResources().getString(R.string.stringNW);
 
         txt_azimuth.setText(String.format("lat: %.4f", latLng.latitude));
         txt_azimuthlon.setText(String.format("lon: %.4f", latLng.longitude));
 
-        txt_bearing.setText(int_bearing +" °  NE" );
+//        txt_bearing.setText(int_bearing +mystringNE );
+        //Rev 1.0.0
+        String myIntAsStrinint_bearing = String.format("%d", int_bearing);
+        txt_bearing.setText(myIntAsStrinint_bearing );
+
         ((MyApplication) this.getApplication()).setsavedNEVariable("NE");
 
+/*
         if (bearing<0.0){
-            txt_bearing.setText(int_bearing +" °  NW" );
+
+            txt_bearing.setText(int_bearing +mystringNW );
             ((MyApplication) this.getApplication()).setsavedNEVariable("NW");
         }
+*/
 
         // set
         ((MyApplication) this.getApplication()).setsavedlatVariable(String.format(s_lat));
         ((MyApplication) this.getApplication()).setsavedlonVariable(String.format(s_lon));
         ((MyApplication) this.getApplication()).setsavedbearVariable(String.format(s_bearing));
-
 
         /*
         txt_bearing.setText(s_bearing +" °  NE" );
@@ -350,6 +375,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
         Button btnCompass = (Button) findViewById(R.id.btnCompass);
+
         btnCompass.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
