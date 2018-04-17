@@ -8,30 +8,6 @@
     android:layout_height="match_parent">
 
 
-
-<!--
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.51"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/txt_azimuth"
--->
-
-<!--
-    android:layout_marginEnd="8dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
--->
-
-<!--
-    android:layout_width="320dp"
-    android:layout_height="427dp"
--->
-
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/map"
@@ -82,19 +58,38 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
+    <!--<Button-->
+    <ImageButton
         android:id="@+id/btnCompass"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/input_search"
         android:layout_marginStart="8dp"
-        android:background="@color/colorPrimaryDark"
         android:padding="10dp"
         android:text="@string/btn_compass"
         android:textColor="#FFF"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/input_search" />
+        app:layout_constraintTop_toBottomOf="@+id/input_search"
+        app:srcCompat="@drawable/compassq"
+        android:layout_marginLeft="8dp" />
 
+<!--
+    <TextView
+        android:id="@+id/textlocator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Click to get Qibla direction"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnCompass"
+        app:layout_constraintTop_toTopOf="@+id/btnCompass" />
+
+-->
 
     <TextView
         android:id="@+id/txt_azimuth"
@@ -149,6 +144,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txt_azimuthlon"
         app:layout_constraintTop_toBottomOf="@+id/txt_azimuthlon" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center_horizontal"
+        android:text="Click to get Qibla direction"
+
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCompass" />
 
 
     <!--

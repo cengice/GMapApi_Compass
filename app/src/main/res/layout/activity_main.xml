@@ -6,21 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/my_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+-->
 
-    <Button
+    <!--app:layout_constraintTop_toBottomOf="@+id/my_toolbar"-->
+
+    <ImageButton
         android:id="@+id/btnMap"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:textColor="#FFF"
-        android:background= "@color/colorPrimaryDark"
-        android:padding="10dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
+        android:padding="10dp"
         android:text="@string/btn_map"
+        android:textColor="#FFF"
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toTopOf="parent" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gmaps_icon"
+        android:layout_marginLeft="8dp" />
 
     <TextView
         android:id="@+id/txt_serviceok"
@@ -64,7 +77,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCompass" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMap" />
 
 
 <!--
@@ -80,7 +93,7 @@
         android:onClick="playAudio"
         android:text="@string/Play_Ezzan"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnCompass" />
+        app:layout_constraintTop_toBottomOf="@+id/btnMap" />
 
 -->
 
@@ -203,20 +216,50 @@
         app:layout_constraintStart_toEndOf="@+id/txt_savedtextNE"
         app:layout_constraintTop_toBottomOf="@+id/textbear" />
 
-    <Button
+    <!--<Button-->
+
+    <ImageButton
+        app:srcCompat="@drawable/compassq"
         android:id="@+id/btnCompass"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:background= "@color/colorPrimaryDark"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:padding="10dp"
+        android:text="@string/btn_compass"
+        android:textColor="#FFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_savedtextNE"
+        android:layout_marginLeft="8dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Click to get your location"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnMap"
+        app:layout_constraintTop_toTopOf="@+id/btnMap" />
+
+    <TextView
+        android:id="@+id/textlocator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/btn_compass"
+        android:text="Click to get Qibla direction"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnMap"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/btnCompass"
+        app:layout_constraintTop_toTopOf="@+id/btnCompass" />
+
 
     <!--
         <TextView

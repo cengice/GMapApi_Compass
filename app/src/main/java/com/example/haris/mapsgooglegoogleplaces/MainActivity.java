@@ -1,14 +1,21 @@
 package com.example.haris.mapsgooglegoogleplaces;
+import android.Manifest;
 import android.app.Application;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.MediaPlayer;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -18,6 +25,7 @@ import com.google.android.gms.common.GoogleApiAvailability;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int REQUEST_PERMISSION_WRITE = 1001;
     TextView txt_serviceok;
     TextView txt_servicenotok;
 
@@ -36,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG ="MainActivity";
     private static final int ERROR_DIALOG_REQUEST = 9001;
+    private boolean permissionGranted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,13 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 */
+
+/*
+        if(!permissionGranted){
+            checkPermissions();
+        }
+*/
+
         txt_serviceok = (TextView) findViewById(R.id.txt_serviceok);
         txt_servicenotok = (TextView) findViewById(R.id.txt_servicenotok);
 
@@ -60,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
         txt_savedtextlon = (TextView) findViewById(R.id.txt_savedtextlon);
         txt_savedtextbear = (TextView) findViewById(R.id.txt_savedtextbear);
         txt_savedtextNE = (TextView) findViewById(R.id.txt_savedtextNE);
+
+        TextView textlocator = (TextView) findViewById(R.id.textlocator);
+        textlocator.setVisibility(View.INVISIBLE);
+
 
         // get
         String savedtextlat= ((MyApplication) this.getApplication()).getsavedlatVariable();
@@ -109,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
 
         // Ver 1.0.1   mp = MediaPlayer.create(this, R.raw.abc);
 
-        Button btnCompass = (Button) findViewById(R.id.btnCompass);
+        ImageButton btnCompass = (ImageButton) findViewById(R.id.btnCompass);
+
 
         if(!testsaveddate){
                 btnCompass.setVisibility(View.INVISIBLE);
@@ -120,6 +141,19 @@ public class MainActivity extends AppCompatActivity {
 
        if(testsaveddate) {
            btnCompass.setVisibility(View.VISIBLE);
+           textlocator.setVisibility(View.VISIBLE);
+
+           txt_serviceok.setVisibility(View.INVISIBLE);
+           txt_servicenotok.setVisibility(View.INVISIBLE);
+           textlat.setVisibility(View.VISIBLE);
+           textlon.setVisibility(View.VISIBLE);
+           textbear.setVisibility(View.VISIBLE);
+
+           txt_savedtextlat.setVisibility(View.VISIBLE);
+           txt_savedtextlon.setVisibility(View.VISIBLE);
+           txt_savedtextbear.setVisibility(View.VISIBLE);
+           txt_savedtextNE.setVisibility(View.VISIBLE);
+
            btnCompass.setOnClickListener(new View.OnClickListener(){
                @Override
                public void onClick(View view){
@@ -132,7 +166,21 @@ public class MainActivity extends AppCompatActivity {
                    startActivity(intent);
                }
            });
-      }
+    }else{
+        txt_serviceok.setVisibility(View.INVISIBLE  );
+        txt_servicenotok.setVisibility(View.INVISIBLE);
+        textlat.setVisibility(View.INVISIBLE);
+        textlon.setVisibility(View.INVISIBLE);
+        textbear.setVisibility(View.INVISIBLE);
+        textNE.setVisibility(View.INVISIBLE);
+
+        txt_savedtextlat.setVisibility(View.INVISIBLE);
+        txt_savedtextlon.setVisibility(View.INVISIBLE);
+        txt_savedtextbear.setVisibility(View.INVISIBLE);
+        txt_savedtextNE.setVisibility(View.INVISIBLE);
+
+    }
+
 
 
         if(isServicesOK()){
@@ -143,6 +191,7 @@ public class MainActivity extends AppCompatActivity {
         Boolean diagnostic_mode = false;
 //        Boolean diagnostic_mode = true;
 
+/*
         if(diagnostic_mode) {
             txt_serviceok.setVisibility(View.VISIBLE);
             txt_servicenotok.setVisibility(View.VISIBLE);
@@ -168,15 +217,16 @@ public class MainActivity extends AppCompatActivity {
             txt_savedtextNE.setVisibility(View.INVISIBLE);
 
             }
+*/
 
     }
 
     private void init(){
-        txt_serviceok.setVisibility(View.VISIBLE);
+        txt_serviceok.setVisibility(View.INVISIBLE);
         txt_servicenotok.setVisibility(View.INVISIBLE);
         Log.d(TAG, "init: drawing btn map is working");
 
-        Button btnMap = (Button) findViewById(R.id.btnMap);
+        ImageButton btnMap = (ImageButton) findViewById(R.id.btnMap);
 
         btnMap.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -202,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
         if(available == ConnectionResult.SUCCESS) {
             //everything is fine and user can make the map requests
             Log.d(TAG, "isServicesOK: Google Play Services is working");
-            txt_serviceok.setVisibility(View.VISIBLE);
+            txt_serviceok.setVisibility(View.INVISIBLE);
             txt_servicenotok.setVisibility(View.INVISIBLE);
             return true;
         }
@@ -211,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "isServicesOK: an error occured but we can fix it");
             Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
             dialog.show();
-            txt_serviceok.setVisibility(View.VISIBLE);
+            txt_serviceok.setVisibility(View.INVISIBLE);
             txt_servicenotok.setVisibility(View.INVISIBLE);
 
             return false;
@@ -223,6 +273,52 @@ public class MainActivity extends AppCompatActivity {
         txt_servicenotok.setVisibility(View.VISIBLE);
         return false;
 
+    }
+
+    // Checks if external storage is available for read and write
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
+    // Initiate request for permissions.
+    private boolean checkPermissions() {
+
+        if (!isExternalStorageWritable()) {
+            Toast.makeText(this, "This app only works on devices with usable external storage",
+                    Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        int permissionCheck = ContextCompat.checkSelfPermission(this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                    REQUEST_PERMISSION_WRITE);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    // Handle permissions result
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case REQUEST_PERMISSION_WRITE:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    permissionGranted = true;
+                    Toast.makeText(this, "External storage permission granted",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "You must grant permission!", Toast.LENGTH_SHORT).show();
+                }
+                break;
+        }
     }
 
 }

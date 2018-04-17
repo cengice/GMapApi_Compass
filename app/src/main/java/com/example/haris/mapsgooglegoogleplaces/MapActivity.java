@@ -20,9 +20,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -56,6 +58,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     ImageView img_mec;
     ImageView img_compass;
 */
+
 
     TextView txt_azimuth;
     TextView txt_azimuthlon;
@@ -115,6 +118,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //added toolbar
+//        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        //setSupportActionBar(myToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.activity_map);
@@ -374,7 +381,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
 
 
-        Button btnCompass = (Button) findViewById(R.id.btnCompass);
+        ImageButton btnCompass = (ImageButton) findViewById(R.id.btnCompass);
 
         btnCompass.setOnClickListener(new View.OnClickListener(){
             @Override
