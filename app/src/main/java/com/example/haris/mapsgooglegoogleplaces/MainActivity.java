@@ -1,23 +1,21 @@
 package com.example.haris.mapsgooglegoogleplaces;
 import android.Manifest;
-import android.app.Application;
+import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -51,6 +49,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        //added action bar
+/*
+        android.support.v7.app.ActionBar ab = getSupportActionBar();
+
+        ab.setLogo(R.drawable.compassr);
+        ab.setDisplayUseLogoEnabled(true);
+
+        ab.setDisplayShowHomeEnabled(true);
+*/
 
         //added toolbar
 /*
@@ -220,6 +228,29 @@ public class MainActivity extends AppCompatActivity {
 */
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        //Inflate the menu this adds items to the action menu if it is present
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    //this is how overflow for settings is added
+/*
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item){
+    //Handle click
+        int id  = item.getItemId();
+        if(id == R.id.action_settings){
+            return true;
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+*/
+
 
     private void init(){
         txt_serviceok.setVisibility(View.INVISIBLE);
